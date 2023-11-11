@@ -1,0 +1,36 @@
+<template>
+    <div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container">
+                <NuxtLink class="navbar-brand" to="/">
+                    <span>
+                        <i class="bi bi-book" />
+                        Simple Library App
+                    </span>
+                </NuxtLink>
+                <div class="dropstart d-flex justify-content-end">
+                    <button class="btn btn-light dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span>
+                            <i class="bi bi-person-circle"/>
+                            Hesap
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><NuxtLink class="dropdown-item" to="/auth/login">Giriş Yap</NuxtLink></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col col-12 mt-3">
+                <slot/>
+            </div>
+        </div>
+    </div>
+</template>
