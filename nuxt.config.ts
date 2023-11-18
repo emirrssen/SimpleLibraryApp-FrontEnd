@@ -2,6 +2,10 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
+  modules: ['@pinia/nuxt'],
+  pinia: {
+    storesDirs: ['./store/**']
+  },
   app: {
     head: {
       title: "Simple Library App",
