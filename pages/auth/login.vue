@@ -1,18 +1,24 @@
 <template>
     <div>
         <div class="row">
-            <div class="col col-4 offset-4">
+            <div class="col col-12 col-md-4 offset-md-4">
                 <div class="card">
                     <div class="card-header d-flex align-items-center "><h5>Giriş Yap</h5></div>
                     <div class="card-body">
                         <form>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">E-Posta</label>
-                                <input type="email" class="form-control" id="email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Şifre</label>
-                                <input type="password" class="form-control" id="password">
+                            <div class="row">
+                                <div class="col col-12">
+                                    <div class="mb-2">
+                                        <label for="email" class="form-label">E-Posta</label>
+                                        <input type="email" class="form-control" id="email">
+                                    </div>
+                                </div>
+                                <div class="col col-12">
+                                    <div class="mb-2">
+                                        <label for="password" class="form-label">Şifre</label>
+                                        <input type="password" class="form-control" id="password">
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
