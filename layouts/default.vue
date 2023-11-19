@@ -28,7 +28,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col col-12 mt-3">
+            <div class="col col-12 mt-3 mb-3">
                 <slot/>
             </div>
         </div>

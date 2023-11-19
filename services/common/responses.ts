@@ -1,19 +1,19 @@
 export class BaseResponse {
-    IsSuccess: boolean = false;
-    Message: string = "";
+    isSuccess: boolean = false;
+    message: string = "";
 
-    constructor(fields?:{ IsSuccess: boolean, Message: string }) {
+    constructor(fields?:{ isSuccess: boolean, message: string }) {
         Object.assign(this, fields);
     }
 }
 
 export class GenericDataResponse<T> extends BaseResponse {
-    Data: T | null | undefined = null;
-    IsSuccess: boolean = false;
-    Message: string = "";
+    data: T | null | undefined = null;
+    isSuccess: boolean = false;
+    message: string = "";
 
-    constructor(fields?: { Data: T, IsSuccess: boolean, Message: string }) {
+    constructor(fields?: { data: T, isSuccess: boolean, message: string }) {
         super(fields);
-        this.Data = fields?.Data;
+        this.data = fields?.data;
     }
 }

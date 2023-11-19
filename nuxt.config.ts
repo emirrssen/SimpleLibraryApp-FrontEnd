@@ -2,7 +2,15 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
-  modules: ['@pinia/nuxt'],
+  css: [
+    'vue-toastification/dist/index.css'
+  ],
+  modules: [
+    '@pinia/nuxt'
+  ],
+  build: {
+    transpile: ['vue-toastification']
+  },
   pinia: {
     storesDirs: ['./store/**']
   },

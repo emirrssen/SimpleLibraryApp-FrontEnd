@@ -56,7 +56,7 @@
                     </div>
                     <div class="card-footer d-flex align-items-center justify-content-between">
                         <NuxtLink class="navigate-to-login" to="/auth/login">Zaten Bir Hesabın Var Mı?</NuxtLink>
-                        <div class="btn btn-success" @click="register">Kayıt Ol</div>
+                        <button class="btn btn-success" @click="register" :disabled="btnRegisterDisabled">Kayıt Ol</button>
                     </div>
                 </div>
             </div>
@@ -70,11 +70,27 @@
 
     export default {
         computed: {
-            ...mapState(useAuthStore, ['userDataForRegister'])
+            ...mapState(useAuthStore, ['userDataForRegister']),
+
+            btnRegisterDisabled(): boolean {
+                const c1 = this.userDataForRegister.FirstName && this.userDataForRegister.FirstName.length > 0;
+                const c2 = this.userDataForRegister.LastName && this.userDataForRegister.LastName.length > 0;
+                const c3 = this.userDataForRegister.DateOfBirth;
+                const c4 = this.userDataForRegister.NationalityId && this.userDataForRegister.NationalityId.length > 0;
+                const c5 = this.userDataForRegister.Email && this.userDataForRegister.Email.length > 0;
+                const c6 = this.userDataForRegister.GenderId && this.userDataForRegister.GenderId > 0;
+                const c7 = this.userDataForRegister.Password && this.userDataForRegister.Password.length > 0;
+                const c8 = this.userDataForRegister.PasswordRepeat && this.userDataForRegister.PasswordRepeat.length > 0;
+
+                if (c1 && c2 && c3 && c4 && c5 && c6 && c7 && c8) {
+                    return false
+                }
+                return true
+            }
         },
 
         methods: {
-            ...mapActions(useAuthStore, ['register'])
+            ...mapActions(useAuthStore, ['register']),
         }
     }
 </script>

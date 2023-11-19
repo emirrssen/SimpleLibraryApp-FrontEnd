@@ -2,7 +2,7 @@ export class UserForRegister {
     GenderId: number = 0;
     FirstName: string = "";
     LastName: string = "";
-    DateOfBirth: Date = new Date();
+    DateOfBirth: Date | null = null;
     NationalityId: string = "";
     Email: string = "";
     Password: string = "";
