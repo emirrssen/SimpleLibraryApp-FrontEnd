@@ -8,7 +8,7 @@ export default defineNuxtPlugin(() => {
         })
     }
 
-    async function Post<TResponse>(url: string, body?: any): Promise<TResponse> {
+    async function Post<TResponse>(url: string, body?: {}): Promise<TResponse> {
         return $fetch<TResponse>(baseUrl + url, {
             method: 'POST',
             headers: {

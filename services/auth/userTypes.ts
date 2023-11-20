@@ -15,3 +15,12 @@ export class UserForRegister {
         Object.assign(this, fields);
     }
 }
+
+export class UserForLogin {
+    Email: string = "";
+    Password: string = "";
+
+    constructor(fields?: { Email: string, Password: string }) {
+        Object.assign(this, fields);
+    }
+}

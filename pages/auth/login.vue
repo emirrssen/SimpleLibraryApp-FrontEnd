@@ -10,23 +10,23 @@
                                 <div class="col col-12">
                                     <div class="mb-2">
                                         <label for="email" class="form-label">E-Posta</label>
-                                        <input type="email" class="form-control" id="email">
+                                        <input type="email" class="form-control" id="email" v-model="userDataForLogin.Email">
                                     </div>
                                 </div>
                                 <div class="col col-12">
                                     <div class="mb-2">
                                         <label for="password" class="form-label">Şifre</label>
-                                        <input type="password" class="form-control" id="password">
+                                        <input type="password" class="form-control" id="password" v-model="userDataForLogin.Password">
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="card-footer d-flex justify-content-between">
-                        <NuxtLink class="navigate-to-register" to="/auth/register">Hesabın Yok Mu?</NuxtLink>
-                        <div class="btn btn-success btn-sm">
+                        <NuxtLink class="navigate-to-register d-flex align-items-center justify-content-center" to="/auth/register">Hesabın Yok Mu?</NuxtLink>
+                        <button class="btn btn-success" @click="login">
                             Giriş Yap
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -35,6 +35,18 @@
 </template>
 
 <script lang="ts">
+    import { useAuthStore } from '~/store/auth/authStore';
+    import { mapState, mapActions } from 'pinia';
+
+    export default {
+        computed: {
+            ...mapState(useAuthStore, ['userDataForLogin'])
+        },
+
+        methods: {
+            ...mapActions(useAuthStore, ['login'])
+        }
+    }
 
 </script>
 
