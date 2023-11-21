@@ -2,6 +2,7 @@ import { UserForLogin, UserForRegister } from "~/services/auth/userTypes"
 import { RegisterAsync, LoginAsync } from "~/services/auth/authService"
 import { useToast } from "vue-toastification";
 import { navigateTo } from "nuxt/app";
+import nuxtStorage from "nuxt-storage";
 
 export const useAuthStore = defineStore('auth-store', () => {
     const toast = useToast();
@@ -12,7 +13,7 @@ export const useAuthStore = defineStore('auth-store', () => {
         RegisterAsync(userDataForRegister.value).then((response => {
             if (response.isSuccess) {
                 toast.success(response.message);
-                localStorage.setItem("current-user-id", response.data+"")
+                nuxtStorage.localStorage.setData("current-user-id", response.data);
                 navigateTo('/');
             } else {
                 toast.error(response.message)
@@ -24,7 +25,7 @@ export const useAuthStore = defineStore('auth-store', () => {
         LoginAsync(userDataForLogin.value).then((response => {
             if (response.isSuccess) {
                 toast.success(response.message);
-                localStorage.setItem("current-user-id", response.data+"")
+                nuxtStorage.localStorage.setData("current-user-id", response.data);
                 navigateTo('/');
             } else {
                 toast.error(response.message);

@@ -16,11 +16,12 @@
                         </span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <!-- <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li> -->
+                        <li><a class="dropdown-item" href="#">Hesap Ayarları</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><NuxtLink class="dropdown-item" to="/auth/login">Giriş Yap</NuxtLink></li>
+                        <li v-if="checkIsLoggedIn"><a class="dropdown-item" @click="logOut" href="#">Çıkış Yap</a></li>
+                        <li v-if="!checkIsLoggedIn"><NuxtLink class="dropdown-item" to="/auth/login">Giriş Yap</NuxtLink></li>
                     </ul>
                 </div>
             </div>
@@ -34,3 +35,15 @@
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+    import nuxtStorage from "nuxt-storage";
+
+    const checkIsLoggedIn = computed(() => {
+        return nuxtStorage.localStorage.getData("current-user-id") !== 0 ? true : false;
+    })
+
+    function logOut() {
+        nuxtStorage.localStorage.setData("current-user-id", 0);
+    }
+</script>

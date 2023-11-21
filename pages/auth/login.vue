@@ -40,7 +40,7 @@
 
     export default {
         computed: {
-            ...mapState(useAuthStore, ['userDataForLogin'])
+            ...mapState(useAuthStore, ['userDataForLogin']),
         },
 
         methods: {

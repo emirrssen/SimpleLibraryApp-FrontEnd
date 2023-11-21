@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "nuxt-storage": "^1.2.2",
     "pinia": "^2.1.7",
     "vue-toastification": "^2.0.0-rc.5"
   }
