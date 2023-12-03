@@ -34,16 +34,15 @@ export const useAuthStore = defineStore('auth-store', () => {
         }))
     }
 
-    function loadPersonelInfo() {
+    function loadPersonelInfo(): Promise<void> {
         let currentUserId = nuxtStorage.localStorage.getData("current-user-id");
-        LoadPersonelInfoAsync(currentUserId).then((response => {
+        return LoadPersonelInfoAsync(currentUserId).then((response => {
             if (response.isSuccess) {
                 personelInformationOfCurrentUser.value.firstName = response.data?.firstName;
                 personelInformationOfCurrentUser.value.lastName = response.data?.lastName;
                 personelInformationOfCurrentUser.value.profileImageUrl = response.data?.profileImageUrl;
                 personelInformationOfCurrentUser.value.age = response.data?.age;
                 personelInformationOfCurrentUser.value.bookNamesCurrentlyReading = response.data?.bookNamesCurrentlyReading;
-                console.log(response.data?.bookNamesCurrentlyReading);
                 personelInformationOfCurrentUser.value.numberOfBookReaded = response.data?.numberOfBookReaded;
             } else {
                 toast.error(response.message);
