@@ -37,10 +37,10 @@
                             <div class="card">
                                 <div class="card-header">Favori Kitapları</div>
                                 <div class="card-body d-flex flex-wrap justify-content-center" style="gap: 10px;">
-                                    <div v-for="item in dummyData" :key="item.Header" class="card d-flex align-items-center pt-2" style="width: 180px;">
-                                        <img :src="item.Link" class="card-img-top" style="width: 145px;">
+                                    <div v-for="item in favouriteBooks" :key="item.id" class="card d-flex align-items-center pt-2" style="width: 180px;">
+                                        <img :src="item.bookImage" class="card-img-top" style="width: 145px;">
                                         <div class="card-body d-flex flex-column justify-content-end">
-                                            <strong>{{ item.Header }}</strong>
+                                            <strong>{{ item.bookName }}</strong>
                                         </div>
                                     </div>
                                 </div>
@@ -55,18 +55,21 @@
 
 <script setup lang="ts">
     import { useAuthStore } from '~/stores/auth/authStore';
-    const store = useAuthStore();
+    import { useFavouriteBookStore } from '~/stores/favourite-book/favouriteBookStore'
 
-    onMounted(() => {
-        store.loadPersonelInfo();
+    const authStore = useAuthStore();
+    const favouriteBookStore = useFavouriteBookStore();
+
+    onBeforeMount(() => {
+        authStore.loadPersonelInfo();
+        favouriteBookStore.getFavouriteBooksByUserId();
     })
 
-    const currentUserInfo = store.personelInformationOfCurrentUser;
+    const currentUserInfo = computed(() => {
+      return authStore.personelInformationOfCurrentUser;  
+    })
 
-    const dummyData = [
-        { Header: 'Beyaz Zambaklar Ülkesinde', Page: 140, Link: 'https://www.altinkitabevi.com/medya/ems_1608200908.png' },
-        { Header: 'Nutuk', Page: 543, Link: 'https://img.kitapyurdu.com/v1/getImage/fn:4060202/wh:true/wi:800' },
-        { Header: 'Yeraltından Notlar', Page: 160, Link: 'https://isyonet.iskultur.com.tr/dosyalar/2008/07/Yeraltindan_Notlar41.png' },
-        { Header: 'Bozkurt', Page: 246, Link: 'https://img.kitapyurdu.com/v1/getImage/fn:11515021/wh:true/miw:200/mih:200' },
-    ]
+    const favouriteBooks = computed(() => {
+        return favouriteBookStore.favouriteBooksOfCurrentUser;
+    })
 </script>
