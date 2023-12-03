@@ -2,7 +2,7 @@ import { PersonelInfo, UserForLogin, UserForRegister } from "~/services/auth/use
 import { RegisterAsync, LoginAsync, LoadPersonelInfoAsync } from "~/services/auth/authService"
 import { useToast } from "vue-toastification";
 import { navigateTo } from "nuxt/app";
-import nuxtStorage from "nuxt-storage";
+import { getCurrentUserId, setCurrentUserId } from "~/services/common/localStorageBase";
 
 export const useAuthStore = defineStore('auth-store', () => {
     const toast = useToast();
@@ -14,7 +14,7 @@ export const useAuthStore = defineStore('auth-store', () => {
         RegisterAsync(userDataForRegister.value).then((response => {
             if (response.isSuccess) {
                 toast.success(response.message);
-                nuxtStorage.localStorage.setData("current-user-id", response.data);
+                setCurrentUserId(response.data);
                 navigateTo('/home');
             } else {
                 toast.error(response.message)
@@ -26,7 +26,7 @@ export const useAuthStore = defineStore('auth-store', () => {
         LoginAsync(userDataForLogin.value).then((response => {
             if (response.isSuccess) {
                 toast.success(response.message);
-                nuxtStorage.localStorage.setData("current-user-id", response.data);
+                setCurrentUserId(response.data);
                 navigateTo('/home');
             } else {
                 toast.error(response.message);
@@ -34,20 +34,21 @@ export const useAuthStore = defineStore('auth-store', () => {
         }))
     }
 
-    function loadPersonelInfo(): Promise<void> {
-        let currentUserId = nuxtStorage.localStorage.getData("current-user-id");
-        return LoadPersonelInfoAsync(currentUserId).then((response => {
-            if (response.isSuccess) {
-                personelInformationOfCurrentUser.value.firstName = response.data?.firstName;
-                personelInformationOfCurrentUser.value.lastName = response.data?.lastName;
-                personelInformationOfCurrentUser.value.profileImageUrl = response.data?.profileImageUrl;
-                personelInformationOfCurrentUser.value.age = response.data?.age;
-                personelInformationOfCurrentUser.value.bookNamesCurrentlyReading = response.data?.bookNamesCurrentlyReading;
-                personelInformationOfCurrentUser.value.numberOfBookReaded = response.data?.numberOfBookReaded;
-            } else {
-                toast.error(response.message);
-            }
-        }))
+    function loadPersonelInfo(){
+        getCurrentUserId().then((response => {
+            return LoadPersonelInfoAsync(response).then((response => {
+                if (response.isSuccess) {
+                    personelInformationOfCurrentUser.value.firstName = response.data?.firstName;
+                    personelInformationOfCurrentUser.value.lastName = response.data?.lastName;
+                    personelInformationOfCurrentUser.value.profileImageUrl = response.data?.profileImageUrl;
+                    personelInformationOfCurrentUser.value.age = response.data?.age;
+                    personelInformationOfCurrentUser.value.bookNamesCurrentlyReading = response.data?.bookNamesCurrentlyReading;
+                    personelInformationOfCurrentUser.value.numberOfBookReaded = response.data?.numberOfBookReaded;
+                } else {
+                    toast.error(response.message);
+                }
+            }))
+        }));
     }
 
     return { 

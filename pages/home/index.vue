@@ -3,7 +3,21 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6 col-sm-12 col-xs-12">
-                    Carousel Here!
+                    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner d-flex align-items-center" style="height: 400px">
+                            <div v-for="item in carouselItems" :key="item.id" class="carousel-item" :class="{active: item.id === 1}">
+                                <img :src="item.image" class="d-block w-100" style="object-fit: cover;">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-sm-12 col-xs-12">
                     <div class="row">
@@ -56,13 +70,16 @@
 <script setup lang="ts">
     import { useAuthStore } from '~/stores/auth/authStore';
     import { useFavouriteBookStore } from '~/stores/favourite-book/favouriteBookStore'
+    import { useCarouselStore } from '~/stores/carousel/carouselStore'
 
     const authStore = useAuthStore();
     const favouriteBookStore = useFavouriteBookStore();
+    const carouselStore = useCarouselStore();
 
     onBeforeMount(() => {
         authStore.loadPersonelInfo();
         favouriteBookStore.getFavouriteBooksByUserId();
+        carouselStore.getAllWithDetails();
     })
 
     const currentUserInfo = computed(() => {
@@ -71,5 +88,9 @@
 
     const favouriteBooks = computed(() => {
         return favouriteBookStore.favouriteBooksOfCurrentUser;
+    })
+
+    const carouselItems = computed(() => {
+        return carouselStore.carouselItems;
     })
 </script>
