@@ -20,8 +20,7 @@
                         <li><a class="dropdown-item" href="#">Another action</a></li> -->
                         <li><a class="dropdown-item" href="#">Hesap Ayarları</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li v-if="checkIsLoggedIn"><a class="dropdown-item" @click="logOut" href="#">Çıkış Yap</a></li>
-                        <li v-if="!checkIsLoggedIn"><NuxtLink class="dropdown-item" to="/auth/login">Giriş Yap</NuxtLink></li>
+                        <li><a class="dropdown-item" @click="logOut()" href="#">Çıkış Yap</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,12 +37,10 @@
 
 <script setup lang="ts">
     import nuxtStorage from "nuxt-storage";
-
-    const checkIsLoggedIn = computed(() => {
-        return nuxtStorage.localStorage.getData("current-user-id") !== 0 ? true : false;
-    })
+    import { navigateTo } from "nuxt/app";
 
     function logOut() {
         nuxtStorage.localStorage.setData("current-user-id", 0);
+        navigateTo('/')
     }
 </script>

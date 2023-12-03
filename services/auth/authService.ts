@@ -1,7 +1,6 @@
 import { GenericDataResponse } from "../common/responses";
-import { UserForLogin, UserForRegister } from "./userTypes";
-
-const Post = useNuxtApp().$post;
+import { PersonelInfo, UserForLogin, UserForRegister } from "./userTypes";
+import { Get, Post } from "../common/baseService";
 
 export function RegisterAsync(userForRegister: UserForRegister): Promise<GenericDataResponse<number>> {
     return Post<GenericDataResponse<number>>('Auth/register', userForRegister);
@@ -9,4 +8,8 @@ export function RegisterAsync(userForRegister: UserForRegister): Promise<Generic
 
 export function LoginAsync(userForLogin: UserForLogin): Promise<GenericDataResponse<number>> {
     return Post<GenericDataResponse<number>>('Auth/login', userForLogin);
+}
+
+export function LoadPersonelInfoAsync(userId: number): Promise<GenericDataResponse<PersonelInfo>> {
+    return Get<GenericDataResponse<PersonelInfo>>('Auth/load-personel-info', { userId: userId });
 }
