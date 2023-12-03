@@ -24,3 +24,19 @@ export class UserForLogin {
         Object.assign(this, fields);
     }
 }
+
+export class PersonelInfo {
+    firstName: string | undefined = "";
+    lastName: string | undefined = "";
+    profileImageUrl: string | undefined = "";
+    age: number | undefined = 0;
+    numberOfBookReaded: number | undefined = 0;
+    bookNamesCurrentlyReading: string[] | undefined = [];
+
+    constructor(fields?: {
+        firstName: string | undefined, lastName: string | undefined, profileImageUrl: string | undefined,
+        age: number | undefined, numberOfBookReaded: number | undefined, bookNamesCurrentlyReading: string[] | undefined
+    }) {
+        Object.assign(this, fields);
+    }
+}
