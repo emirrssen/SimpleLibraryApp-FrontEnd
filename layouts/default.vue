@@ -2,12 +2,17 @@
     <div>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container d-flex justify-content-between">
-                <NuxtLink class="navbar-brand" to="/">
-                    <span>
-                        <i class="bi bi-book" />
-                        Simple Library App
-                    </span>
-                </NuxtLink>
+                <div class="d-flex align-items-center" style="gap: 5px;">
+                    <button class="btn btn-light mr-5" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                        <i class="bi bi-list" />
+                    </button>
+                    <NuxtLink class="navbar-brand" to="/home">
+                        <span>
+                            <i class="bi bi-book" />
+                            Simple Library App
+                        </span>
+                    </NuxtLink>
+                </div>
                 <div class="dropdown">
                     <button class="btn btn-light dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <span>
@@ -25,6 +30,27 @@
                 </div>
             </div>
         </nav>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel"><i class="bi bi-book" /> Simple Library App</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+                </div>
+                <div class="dropdown mt-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    Dropdown button
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="container">
         <div class="row">
@@ -36,11 +62,11 @@
 </template>
 
 <script setup lang="ts">
-    import nuxtStorage from "nuxt-storage";
+    import { setCurrentUserId } from '~/services/common/localStorageBase'
     import { navigateTo } from "nuxt/app";
 
     function logOut() {
-        nuxtStorage.localStorage.setData("current-user-id", 0);
+        setCurrentUserId(0);
         navigateTo('/')
     }
 </script>
