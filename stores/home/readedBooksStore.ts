@@ -3,7 +3,7 @@ import { ReadedBook } from "~/services/borrow-operation/types";
 import { getReadedBooksByUserIdAsync } from "~/services/borrow-operation/borrowOperationServices";
 import { getCurrentUserId } from "~/services/common/localStorageBase";
 
-export const useBorrowOperationStore = defineStore('borrow-operaion-store', () => {
+export const useReadedBooksStore = defineStore('readed-books-store', () => {
     const toast = useToast();
     const readedBooks = ref([] as ReadedBook[])
 

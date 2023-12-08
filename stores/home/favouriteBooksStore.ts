@@ -1,9 +1,9 @@
-import { FavouriteBookDetailsForUser } from "~/services/favourite-book/types"
-import { GetFavouriteBooksByUserIdAsync } from "~/services/favourite-book/favouriteBookService"
-import { useToast } from "vue-toastification";
+import { useToast } from "vue-toastification"
 import { getCurrentUserId } from "~/services/common/localStorageBase";
+import { GetFavouriteBooksByUserIdAsync } from "~/services/favourite-book/favouriteBookService";
+import { FavouriteBookDetailsForUser } from "~/services/favourite-book/types";
 
-export const useFavouriteBookStore = defineStore('favourite-book-store', () => {
+export const useFavouriteBooksStore = defineStore('favourite-books-store', () => {
     const toast = useToast();
     const favouriteBooksOfCurrentUser = ref([] as FavouriteBookDetailsForUser[])
 
