@@ -2,6 +2,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false
+    }
+  ],
   css: [
     'vue-toastification/dist/index.css'
   ],
