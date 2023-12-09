@@ -13,20 +13,27 @@
                         </span>
                     </NuxtLink>
                 </div>
-                <div class="dropdown">
-                    <button class="btn btn-light dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span>
-                            <i class="bi bi-person-circle"/>
-                            Hesap
-                        </span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <!-- <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li> -->
-                        <li><a class="dropdown-item" href="#">Hesap Ayarları</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" @click="logOut()" href="#">Çıkış Yap</a></li>
-                    </ul>
+                <div class="d-flex align-items-center" style="gap: 5px;">
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>
+                                <i class="bi bi-person-circle"/>
+                                Hesap
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Hesap Ayarları</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" @click="logOut()" href="#">Çıkış Yap</a></li>
+                        </ul>
+                    </div>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Ara" v-model="data">
+                        <div class="btn btn-outline-success d-flex align-items-center" style="gap: 5px;" @click="searchOnClick()">
+                            <i class="bi bi-search" />
+                            Ara
+                        </div>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -64,9 +71,19 @@
 <script setup lang="ts">
     import { setCurrentUserId } from '~/services/common/localStorageBase'
     import { navigateTo } from "nuxt/app";
+    import { useSearchResultsStore } from "~/stores/book-search/searchResultsStore"
+
+    const searchResultStore = useSearchResultsStore();
+
+    let data: string = "";
 
     function logOut() {
         setCurrentUserId(0);
         navigateTo('/')
+    }
+
+    function searchOnClick() {
+        searchResultStore.search(data);
+        navigateTo('/book-search');
     }
 </script>
