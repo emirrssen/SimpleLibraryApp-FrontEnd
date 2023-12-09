@@ -28,11 +28,11 @@
                         </ul>
                     </div>
                     <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Ara">
-                        <NuxtLink class="btn btn-outline-success d-flex align-items-center" style="gap: 5px;" to="/book-search">
+                        <input class="form-control me-2" type="search" placeholder="Ara" aria-label="Ara" v-model="data">
+                        <div class="btn btn-outline-success d-flex align-items-center" style="gap: 5px;" @click="searchOnClick()">
                             <i class="bi bi-search" />
                             Ara
-                        </NuxtLink>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -71,9 +71,19 @@
 <script setup lang="ts">
     import { setCurrentUserId } from '~/services/common/localStorageBase'
     import { navigateTo } from "nuxt/app";
+    import { useSearchResultsStore } from "~/stores/book-search/searchResultsStore"
+
+    const searchResultStore = useSearchResultsStore();
+
+    let data: string = "";
 
     function logOut() {
         setCurrentUserId(0);
         navigateTo('/')
+    }
+
+    function searchOnClick() {
+        searchResultStore.search(data);
+        navigateTo('/book-search');
     }
 </script>
