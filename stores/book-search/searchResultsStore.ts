@@ -7,7 +7,6 @@ export const useSearchResultsStore = defineStore('search-results-store', () => {
     const searchedBooks = ref([] as BookDetailsForSearch[])
 
     function search(searchValue: string): Promise<void> {
-        console.log("Inside of store", searchValue);
         return getBookDetailsByNameAsync(searchValue).then((response => {
             if (response.isSuccess) {
                 let data = new Array<BookDetailsForSearch>();

@@ -13,10 +13,10 @@
                     </h2>
                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                     <div class="accordion-body">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkForCategory">
-                            <label class="form-check-label" for="checkForCategory">
-                                Edebiyat
+                        <div v-for="category in filters.categoryFilter" :key="category.id" class="form-check">
+                            <input class="form-check-input" type="checkbox" :id="`checkForCategory${category.id}`" v-model="category.isSelected">
+                            <label class="form-check-label" :for="`checkForCategory${category.id}`">
+                                {{ category.name }}
                             </label>
                         </div>
                     </div>
@@ -30,10 +30,10 @@
                     </h2>
                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
                     <div class="accordion-body">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkForAuthor">
-                            <label class="form-check-label" for="checkForAuthor">
-                                Victor Hugo
+                        <div v-for="author in filters.authorFilter" :key="author.id" class="form-check">
+                            <input class="form-check-input" type="checkbox" :id="`checkForAuthor${author.id}`" v-model="author.isSelected">
+                            <label class="form-check-label" :for="`checkForAuthor${author.id}`">
+                                {{ author.name }}
                             </label>
                         </div>
                     </div>
@@ -47,10 +47,10 @@
                     </h2>
                     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
                     <div class="accordion-body">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkForPublishDate">
-                            <label class="form-check-label" for="checkForPublishDate">
-                                2015
+                        <div v-for="releaseYear in filters.releaseYearFilter" :key="releaseYear.id" class="form-check">
+                            <input class="form-check-input" type="checkbox" :id="`checkForPublishDate${releaseYear.id}`" v-model="releaseYear.isSelected">
+                            <label class="form-check-label" :for="`checkForPublishDate${releaseYear.id}`">
+                                {{ releaseYear.releaseYear }}
                             </label>
                         </div>
                     </div>
@@ -65,8 +65,18 @@
     </div>
 </template>
 
-<script>
-    
+<script setup lang="ts">
+    import { useFiltersStore } from '~/stores/book-search/filtersStore';
+
+    const store = useFiltersStore();
+
+    onMounted(() => {
+        store.getFilters();
+    })
+
+    const filters = computed(() => {
+        return store.filters;
+    })
 </script>
 
 <style>
