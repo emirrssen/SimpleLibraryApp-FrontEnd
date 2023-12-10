@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-3">
-                    Filters Here
+                    <Filters></Filters>
                 </div>
                 <div class="col-9">
                     <div class="mb-3 d-flex" style="gap: 15px;">
