@@ -11,5 +11,5 @@ export function LoginAsync(userForLogin: UserForLogin): Promise<GenericDataRespo
 }
 
 export function LoadPersonelInfoAsync(userId: number): Promise<GenericDataResponse<PersonelInfo>> {
-    return Get<GenericDataResponse<PersonelInfo>>('Auth/load-personel-info', { userId: userId });
+    return Get<GenericDataResponse<PersonelInfo>>('personelinfo/load-personel-info', { userId: userId });
 }

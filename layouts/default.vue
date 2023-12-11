@@ -71,9 +71,9 @@
 <script setup lang="ts">
     import { setCurrentUserId } from '~/services/common/localStorageBase'
     import { navigateTo } from "nuxt/app";
-    import { useSearchResultsStore } from "~/stores/book-search/searchResultsStore"
+    import { useBookSearchStore } from "~/stores/book-search/bookSearchStore"
 
-    const searchResultStore = useSearchResultsStore();
+    const bookSearchStore = useBookSearchStore();
 
     let data: string = "";
 
@@ -83,7 +83,7 @@
     }
 
     function searchOnClick() {
-        searchResultStore.search(data);
+        bookSearchStore.search(data);
         navigateTo('/book-search');
     }
 </script>
