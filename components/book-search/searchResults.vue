@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-    import { useSearchResultsStore } from "~/stores/book-search/searchResultsStore";
+    import { useBookSearchStore } from "~/stores/book-search/bookSearchStore";
 
-    const store = useSearchResultsStore();
+    const store = useBookSearchStore();
 
     const searchedValues = computed(() => store.searchedBooks)
 </script>

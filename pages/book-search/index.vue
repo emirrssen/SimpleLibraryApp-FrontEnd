@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-3">
-                    Filters Here
+                    <Filters></Filters>
                 </div>
                 <div class="col-9">
                     <div class="mb-3 d-flex" style="gap: 15px;">
@@ -21,15 +21,14 @@
 </template>
 
 <script setup lang="ts">
-    import { useSearchResultsStore } from "~/stores/book-search/searchResultsStore"
+    import { useBookSearchStore } from "~/stores/book-search/bookSearchStore"
 
-    let searchResultStore = useSearchResultsStore();
+    let bookSearchStore = useBookSearchStore();
+
     let searchValue: string;
 
     function searchOnClick() {
-        searchResultStore.search(searchValue).then(() => {
-            searchValue = "";
-        });
+        bookSearchStore.search(searchValue);
     }
 </script>
 
