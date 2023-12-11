@@ -24,12 +24,11 @@
     import { useBookSearchStore } from "~/stores/book-search/bookSearchStore"
 
     let bookSearchStore = useBookSearchStore();
+
     let searchValue: string;
 
     function searchOnClick() {
-        bookSearchStore.search(searchValue).then(() => {
-            searchValue = "";
-        });
+        bookSearchStore.search(searchValue);
     }
 </script>
 

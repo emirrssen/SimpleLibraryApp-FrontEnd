@@ -59,8 +59,8 @@
             </div>
         </div>
         <div class="card-footer d-flex justify-content-between">
-            <div class="btn btn-danger">Temizle</div>
-            <div class="btn btn-success" @click="getBooksByFilters()">Filtrele</div>
+            <div class="btn btn-danger" @click="clearFiltersOnClick()">Temizle</div>
+            <div class="btn btn-success" @click="getBooksByFiltersOnClick()">Filtrele</div>
         </div>
     </div>
 </template>
@@ -78,9 +78,16 @@
         return store.filters;
     })
 
-    function getBooksByFilters() {
+    function getBooksByFiltersOnClick() {
         store.getBooksByFilters();
     }
+
+    function clearFiltersOnClick() {
+        filters.value.authorFilter.map(x => x.isSelected = false);
+        filters.value.categoryFilter.map(x => x.isSelected = false);
+        filters.value.releaseYearFilter.map(x => x.isSelected = false);
+    }
+
 </script>
 
 <style>
