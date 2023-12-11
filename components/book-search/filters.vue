@@ -60,15 +60,15 @@
         </div>
         <div class="card-footer d-flex justify-content-between">
             <div class="btn btn-danger">Temizle</div>
-            <div class="btn btn-success">Filtrele</div>
+            <div class="btn btn-success" @click="getBooksByFilters()">Filtrele</div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { useFiltersStore } from '~/stores/book-search/filtersStore';
+    import { useBookSearchStore } from '~/stores/book-search/bookSearchStore';
 
-    const store = useFiltersStore();
+    const store = useBookSearchStore();
 
     onMounted(() => {
         store.getFilters();
@@ -77,6 +77,10 @@
     const filters = computed(() => {
         return store.filters;
     })
+
+    function getBooksByFilters() {
+        store.getBooksByFilters();
+    }
 </script>
 
 <style>

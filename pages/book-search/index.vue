@@ -21,13 +21,13 @@
 </template>
 
 <script setup lang="ts">
-    import { useSearchResultsStore } from "~/stores/book-search/searchResultsStore"
+    import { useBookSearchStore } from "~/stores/book-search/bookSearchStore"
 
-    let searchResultStore = useSearchResultsStore();
+    let bookSearchStore = useBookSearchStore();
     let searchValue: string;
 
     function searchOnClick() {
-        searchResultStore.search(searchValue).then(() => {
+        bookSearchStore.search(searchValue).then(() => {
             searchValue = "";
         });
     }

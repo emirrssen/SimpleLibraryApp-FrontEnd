@@ -1,4 +1,4 @@
-import { Get } from "../common/baseService";
+import { Get, Post } from "../common/baseService";
 import type { GenericDataResponse } from "../common/responses";
 import type { BookDetailsForSearch, Filters } from "./types";
 
@@ -8,4 +8,8 @@ export function getBookDetailsByNameAsync(bookName: string): Promise<GenericData
 
 export function getFiltersAsync(): Promise<GenericDataResponse<Filters>> {
     return Get<GenericDataResponse<Filters>>("book/filters");
+}
+
+export function getBookDetailsByFiltersAsync(categoryFilters: number[], authorFilters: number[], releaseYearFilters: number[]): Promise<GenericDataResponse<BookDetailsForSearch[]>> {
+    return Post<GenericDataResponse<BookDetailsForSearch[]>>("book/get-by-filters", { CategoryFilters: categoryFilters, AuthorFilters: authorFilters, ReleaseYearFilters: releaseYearFilters });
 }
