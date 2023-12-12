@@ -15,6 +15,7 @@ export const useReadedBooksStore = defineStore('readed-books-store', () => {
     
                     response.data?.map(x => data.push(new ReadedBook({
                         id: x.id,
+                        bookId: x.bookId,
                         bookName: x.bookName,
                         bookImage: x.bookImage
                     })))

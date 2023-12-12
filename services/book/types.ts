@@ -55,3 +55,29 @@ export class ReleaseYearFilter {
         Object.assign(this, fields);
     }
 }
+
+export class BookDetails {
+    id: number | undefined = 0;
+    bookName: string | undefined = "";
+    description: string | undefined = "";
+    bookImage: string | undefined = "";
+    pageNumber: number | undefined = 0;
+    author: string | undefined = "";
+    releaseYear: string | undefined = "";
+    category: string | undefined = "";
+    publisher: string | undefined = "";
+
+    constructor(fields?: {
+        id: number | undefined,
+        bookName: string | undefined,
+        description: string | undefined,
+        bookImage: string | undefined,
+        pageNumber: number | undefined,
+        author: string | undefined,
+        releaseYear: string | undefined,
+        category: string | undefined,
+        publisher: string | undefined
+    }) {
+        Object.assign(this, fields);
+    }
+}

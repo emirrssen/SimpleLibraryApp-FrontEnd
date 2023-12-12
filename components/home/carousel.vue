@@ -1,5 +1,5 @@
 <template>
-    <div class="card" style="background-color: rgb(248,248,248);">
+    <div class="card component-card" style="background-color: rgb(248,248,248);">
         <div class="card-header">Pano</div>
         <div class="card-body px-2 py-2 d-flex align-items-center" style="height: 400px;">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
