@@ -11,7 +11,7 @@ export function getFiltersAsync(): Promise<GenericDataResponse<Filters>> {
 }
 
 export function getBookDetailsByFiltersAsync(categoryFilters: number[], authorFilters: number[], releaseYearFilters: number[]): Promise<GenericDataResponse<BookDetailsForSearch[]>> {
-    return Post<GenericDataResponse<BookDetailsForSearch[]>>("book/get-by-filters", { CategoryFilters: categoryFilters, AuthorFilters: authorFilters, ReleaseYearFilters: releaseYearFilters });
+    return Post<GenericDataResponse<BookDetailsForSearch[]>>("book/get-by-filters", {}, { CategoryFilters: categoryFilters, AuthorFilters: authorFilters, ReleaseYearFilters: releaseYearFilters });
 }
 
 export function getBookDetailsByBookIdAsync(bookId: number) : Promise<GenericDataResponse<BookDetails>> {

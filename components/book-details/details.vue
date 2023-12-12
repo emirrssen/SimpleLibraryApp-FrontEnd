@@ -37,7 +37,8 @@
             </div>
         </div>
         <div class="card-footer d-flex align-items-center justify-content-end" style="gap: 10px;">
-            <div class="btn btn-warning">Favorilere Ekle</div>
+            <div class="btn btn-warning" v-if="!checkIsAddedToFavourites()" @click="addToFavouritesOnClick()">Favorilere Ekle</div>
+            <div class="btn btn-danger" v-else @click="removeFromFavouritesOnClick()">Favorilerden Kaldır</div>
             <div class="btn btn-success">Ödünç Al</div>
         </div>
     </div>
@@ -45,9 +46,25 @@
 
 <script setup lang="ts">
     import { useDetailsStore } from "~/stores/book-details/detailsStore";
+    import { useFavouriteBooksStore } from "~/stores/home/favouriteBooksStore";
+    import { navigateTo } from "nuxt/app";
 
     const store = useDetailsStore();
+    const favouriteBookStore = useFavouriteBooksStore();
 
     const currentBook = computed(() => store.currentBook);
+
+    function addToFavouritesOnClick() {
+        favouriteBookStore.insertFavouriteBook(currentBook.value.id);
+    }
+
+    function removeFromFavouritesOnClick() {
+        const idToDelete = favouriteBookStore.favouriteBooksOfCurrentUser.filter(x => x.bookImage === currentBook.value.bookImage).map(x => x.id)[0];
+        favouriteBookStore.deleteFavouriteBookById(idToDelete);
+    }
+
+    function checkIsAddedToFavourites(): boolean {
+        return favouriteBookStore.favouriteBooksOfCurrentUser.some(x => x.bookImage === currentBook.value.bookImage);
+    }
 
 </script>
