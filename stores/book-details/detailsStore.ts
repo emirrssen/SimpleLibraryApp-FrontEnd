@@ -11,6 +11,7 @@ export const useDetailsStore = defineStore('details-store', () => {
             if (response.isSuccess) {
                 let data = new BookDetails({
                     id: response.data?.id,
+                    authorId: response.data?.authorId,
                     author: response.data?.author,
                     bookImage: response.data?.bookImage,
                     bookName: response.data?.bookName,
@@ -22,7 +23,6 @@ export const useDetailsStore = defineStore('details-store', () => {
                 });
 
                 currentBook.value = data;
-                toast.success(response.message);
             } else {
                 toast.error(response.message)
             }
