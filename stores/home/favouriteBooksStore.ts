@@ -14,6 +14,7 @@ export const useFavouriteBooksStore = defineStore('favourite-books-store', () =>
                 if (response.isSuccess) {
                     response?.data?.map(x => data.push(new FavouriteBookDetailsForUser({
                         id: x.id,
+                        bookId: x.bookId,
                         bookName: x.bookName,
                         bookImage: x.bookImage    
                     })))

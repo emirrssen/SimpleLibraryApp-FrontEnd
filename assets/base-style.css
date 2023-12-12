@@ -1,3 +1,12 @@
 .component-card {
     box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
+
+.book-preview {
+    transition: transform 0.1s ease-in-out;
+}
+
+.book-preview:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+}

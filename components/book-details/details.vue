@@ -47,7 +47,6 @@
 <script setup lang="ts">
     import { useDetailsStore } from "~/stores/book-details/detailsStore";
     import { useFavouriteBooksStore } from "~/stores/home/favouriteBooksStore";
-    import { navigateTo } from "nuxt/app";
 
     const store = useDetailsStore();
     const favouriteBookStore = useFavouriteBooksStore();
@@ -59,7 +58,7 @@
     }
 
     function removeFromFavouritesOnClick() {
-        const idToDelete = favouriteBookStore.favouriteBooksOfCurrentUser.filter(x => x.bookImage === currentBook.value.bookImage).map(x => x.id)[0];
+        const idToDelete = favouriteBookStore.favouriteBooksOfCurrentUser.filter(x => x.bookId === currentBook.value.id).map(x => x.id)[0];
         favouriteBookStore.deleteFavouriteBookById(idToDelete);
     }
 
