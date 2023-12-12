@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     }
   ],
   css: [
-    'vue-toastification/dist/index.css'
+    'vue-toastification/dist/index.css',
+    '~/assets/base-style.css'
   ],
   modules: [
     '@pinia/nuxt'

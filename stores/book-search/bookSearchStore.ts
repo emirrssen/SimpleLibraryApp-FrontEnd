@@ -22,7 +22,6 @@ export const useBookSearchStore = defineStore('book-search-store', () => {
                 })))
 
                 searchedBooks.value = data;
-                toast.success(response.message)
             } else {
                 toast.error(response.message);
             }
@@ -81,7 +80,6 @@ export const useBookSearchStore = defineStore('book-search-store', () => {
                 })))
 
                 searchedBooks.value = data;
-                toast.success(response.message);
             } else {
                 toast.error(response.message);
             }

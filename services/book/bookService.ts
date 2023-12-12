@@ -1,6 +1,6 @@
 import { Get, Post } from "../common/baseService";
 import type { GenericDataResponse } from "../common/responses";
-import type { BookDetailsForSearch, Filters } from "./types";
+import type { BookDetails, BookDetailsForRecommendation, BookDetailsForSearch, Filters } from "./types";
 
 export function getBookDetailsByNameAsync(bookName: string): Promise<GenericDataResponse<BookDetailsForSearch[]>> {
     return Get<GenericDataResponse<BookDetailsForSearch[]>>("book/search", { BookName: bookName });
@@ -11,5 +11,13 @@ export function getFiltersAsync(): Promise<GenericDataResponse<Filters>> {
 }
 
 export function getBookDetailsByFiltersAsync(categoryFilters: number[], authorFilters: number[], releaseYearFilters: number[]): Promise<GenericDataResponse<BookDetailsForSearch[]>> {
-    return Post<GenericDataResponse<BookDetailsForSearch[]>>("book/get-by-filters", { CategoryFilters: categoryFilters, AuthorFilters: authorFilters, ReleaseYearFilters: releaseYearFilters });
+    return Post<GenericDataResponse<BookDetailsForSearch[]>>("book/get-by-filters", {}, { CategoryFilters: categoryFilters, AuthorFilters: authorFilters, ReleaseYearFilters: releaseYearFilters });
+}
+
+export function getBookDetailsByBookIdAsync(bookId: number) : Promise<GenericDataResponse<BookDetails>> {
+    return Get<GenericDataResponse<BookDetails>>("book/details", { BookId: bookId });
+}
+
+export function getBookDetailsForRecommendationsByAuthorIdAsync(authorId: number | undefined): Promise<GenericDataResponse<BookDetailsForRecommendation[]>> {
+    return Get<GenericDataResponse<BookDetailsForRecommendation[]>>("book/recommendations", { AuthorId: authorId })
 }
