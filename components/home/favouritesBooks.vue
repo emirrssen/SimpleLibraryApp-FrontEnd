@@ -1,6 +1,6 @@
 
 <template>
-    <div class="card">
+    <div class="card component-card">
         <div class="card-header">Favori Kitapları</div>
         <div class="card-body d-flex flex-wrap justify-content-center" style="gap: 10px; height: 390px; overflow-y: auto;">
             <div v-for="item in favouriteBooks" :key="item.id" class="card d-flex pt-2" style="width: 180px;">

@@ -1,11 +1,11 @@
 <template>
-    <div class="card">
+    <div class="card component-card">
         <div class="card-header">Kişisel Bilgiler</div>
         <div class="card-body">
             <div class="row">
                 <div class="col-4 d-flex align-items-center justify-content-center">
                     <img 
-                        :src="currentUserInfo.profileImageUrl && currentUserInfo.profileImageUrl?.length > 0 ? currentUserInfo.profileImageUrl : '../../assets/default-profile.png'" 
+                        :src="currentUserInfo.profileImageUrl && currentUserInfo.profileImageUrl?.length > 0 ? currentUserInfo.profileImageUrl : 'https://static.thenounproject.com/png/5034901-200.png'" 
                         style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;"
                     >
                 </div>
