@@ -8,6 +8,11 @@
 
             </div>
         </div>
+        <div class="row">
+            <div class="col-4 pt-4">
+                <ChangePassword></ChangePassword>
+            </div>
+        </div>
     </div>
 </template>
 
