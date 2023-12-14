@@ -2,7 +2,7 @@
 <template>
     <div class="card component-card">
         <div class="card-header">Favori Kitapları</div>
-        <div class="card-body d-flex flex-wrap justify-content-center" style="gap: 10px; height: 390px; overflow-y: auto;">
+        <div class="card-body d-flex flex-wrap justify-content-center" style="gap: 18px; height: 390px; overflow-y: auto;">
             <BookPreview 
                 v-for="item in favouriteBooks" 
                 :book-id="item.bookId" 
