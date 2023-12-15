@@ -1,16 +1,12 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-4">
+            <div class="col-4 d-flex flex-column" style="gap: 20px;">
                 <PersonelInfoDetail></PersonelInfoDetail>
+                <ChangePassword></ChangePassword>
             </div>
             <div class="col-8">
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4 pt-4">
-                <ChangePassword></ChangePassword>
+                <BorrowedBooks></BorrowedBooks>
             </div>
         </div>
     </div>
