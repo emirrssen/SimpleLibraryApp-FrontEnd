@@ -1,5 +1,5 @@
 import { GenericDataResponse } from "../common/responses";
-import { PersonelInfo, UserForLogin, UserForRegister } from "./userTypes";
+import { PersonelInfo, PersonelInfoDetails, UserForLogin, UserForRegister } from "./userTypes";
 import { Get, Post } from "../common/baseService";
 
 export function RegisterAsync(userForRegister: UserForRegister): Promise<GenericDataResponse<number>> {
@@ -12,4 +12,8 @@ export function LoginAsync(userForLogin: UserForLogin): Promise<GenericDataRespo
 
 export function LoadPersonelInfoAsync(userId: number): Promise<GenericDataResponse<PersonelInfo>> {
     return Get<GenericDataResponse<PersonelInfo>>('personelinfo/load-personel-info', { userId: userId });
+}
+
+export function GetDetailsForProfileAsync(userId: number): Promise<GenericDataResponse<PersonelInfoDetails>> {
+    return Get<GenericDataResponse<PersonelInfoDetails>>('personelinfo/get-details-for-profile', { UserId: userId });
 }
