@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end">
-            <div class="btn form-button">
+            <div class="btn btn-success">
                 Kaydet
             </div>
         </div>
@@ -28,7 +28,4 @@
 </script>
 
 <style scoped>
-    .form-button:hover {
-        background-color: rgba(0, 0, 0, .1);
-    }
 </style>
