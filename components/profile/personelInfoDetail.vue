@@ -5,7 +5,7 @@
         </div>
         <div class="card-body">
             <div style="border-bottom: 1px solid rgba(0, 0, 0, .3); width: 100%;" class="d-flex justify-content-center pb-3">
-                <img :src="personelInfoDetails.profileImage" style="width: 140px; height: 140px; border-radius: 50%;">
+                <img :src="personelInfoDetails.profileImage" style="width: 140px; height: 140px; border-radius: 50%; object-fit: cover">
             </div>
             <div class="d-flex flex-column justify-content-center align-items-center pt-4 px-1">
                 <div class="d-flex justify-content-around pb-3" style="width: 100%;">
