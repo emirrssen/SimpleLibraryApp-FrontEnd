@@ -40,3 +40,33 @@ export class PersonelInfo {
         Object.assign(this, fields);
     }
 }
+
+export class PersonelInfoDetails {
+    id: number | undefined = 0;
+    name: string | undefined = "";
+    profileImage: string | undefined = "";
+    email: string | undefined = "";
+    dateOfBirth: string | undefined = "";
+    accountStartDate: string | undefined = "";
+    readedBookNumber: number | undefined = 0;
+    favouriteBookNumber: number | undefined = 0;
+
+    constructor(fields?: {
+        id: number | undefined, name: string | undefined, profileImage: string | undefined,
+        email: string | undefined, dateOfBirth: string | undefined, accountStartDate: string | undefined,
+        readedBookNumber: number | undefined, favouriteBookNumber: number | undefined 
+    }) {
+        Object.assign(this, fields);
+    }
+}
+
+export class PasswordToChange {
+    UserId: number = 0;
+    OldPassword: string = "";
+    NewPassword: string = "";
+    NewPasswordRepeat: string = "";
+
+    constructor(fields?: { UserId: number, OldPassword: string, NewPassword: string, NewPasswordRepeat: string }) {
+        Object.assign(this, fields);
+    }
+}

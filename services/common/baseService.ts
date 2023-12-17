@@ -31,3 +31,14 @@ export function Delete<TResponse>(url: string, params?: {}): Promise<TResponse> 
         params: {...params}
     })
 }
+
+export function Put<TResponse>(url: string, params?: {}, body?: {}): Promise<TResponse> {
+    return $fetch<TResponse>(baseUrl + url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        params: {...params},
+        body: body
+    })
+}

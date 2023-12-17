@@ -22,7 +22,7 @@
                             </span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Hesap Ayarları</a></li>
+                            <li><NuxtLink class="dropdown-item" to="/profile">Hesabım</NuxtLink></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" @click="logOut()" href="#">Çıkış Yap</a></li>
                         </ul>
