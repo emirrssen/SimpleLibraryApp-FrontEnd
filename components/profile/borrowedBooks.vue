@@ -2,7 +2,7 @@
     <div class="card component-card">
         <div class="card-header">Ödünç Alınan Kitaplar</div>
         <div class="card-body d-flex justify-content-center align-items-between" style="gap: 15px; flex-wrap: wrap;">
-            <div v-for="item in borrowedBookDetails" class="card mb-3 book-preview" style="width: 400px; height: 215px">
+            <div v-for="item in borrowedBookDetails" class="card mb-3 book-preview" style="width: 400px; height: 215px" @click="displayBookDetailsOnClick(item.bookId)">
                 <div class="row">
                     <div class="col-5 d-flex flex-column align-items-center justify-content-center px-4 py-2">
                         <img :src="item.bookImage" class="img-fluid rounded-start w-100">
@@ -23,14 +23,23 @@
 
 <script setup lang="ts">
     import { useBorrowedBookDetailsStore } from '~/stores/profile/borrowedBookDetailsStore';
+    import { useDetailsStore } from '~/stores/book-details/detailsStore';
+    import { navigateTo } from 'nuxt/app';
 
     const borrowedBookDetailsStore = useBorrowedBookDetailsStore();
+    const detailsStore = useDetailsStore();
 
     const borrowedBookDetails = computed(() => borrowedBookDetailsStore.borrowedBookDetails);
 
     onMounted(() => {
         borrowedBookDetailsStore.getBorrowedBookDetails();
     })
+
+    function displayBookDetailsOnClick(bookId: number) {
+        detailsStore.getBookDetails(bookId).then(() => {
+            navigateTo('/book-details');
+        })
+    }
 </script>
 
 <style scoped>
