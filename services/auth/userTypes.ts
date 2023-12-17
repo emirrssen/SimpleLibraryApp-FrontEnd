@@ -59,3 +59,14 @@ export class PersonelInfoDetails {
         Object.assign(this, fields);
     }
 }
+
+export class PasswordToChange {
+    UserId: number = 0;
+    OldPassword: string = "";
+    NewPassword: string = "";
+    NewPasswordRepeat: string = "";
+
+    constructor(fields?: { UserId: number, OldPassword: string, NewPassword: string, NewPasswordRepeat: string }) {
+        Object.assign(this, fields);
+    }
+}
