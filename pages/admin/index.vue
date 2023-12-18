@@ -25,6 +25,7 @@
                         <div class="card-header">{{ listItems.find(x => x.Id === selectedPanel)?.Title }}</div>
                         <div class="card-body">
                             <AdminProfileManagement v-if="selectedPanel === 8"></AdminProfileManagement>
+                            <UserManagement v-if="selectedPanel === 1"></UserManagement>
                         </div>
                     </div>
                 </div>

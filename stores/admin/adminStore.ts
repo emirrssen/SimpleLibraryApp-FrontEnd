@@ -12,7 +12,7 @@ export const useAdminStore = defineStore('admin-store', () => {
         { Id: 7, Title: "Pano Yönetimi", IsSelected: false },
         { Id: 8, Title: "Kişisel Hesap Yönetimi", IsSelected: false },
     ]);
-    const selectedPanel = ref(0);
+    const selectedPanel = ref(1);
 
     function selectPanel(selectedPanelId: number) {
         for (const item of listItems.value) {
