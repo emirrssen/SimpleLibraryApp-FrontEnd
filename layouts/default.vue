@@ -24,7 +24,7 @@
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><NuxtLink class="dropdown-item" to="/profile">Hesabım</NuxtLink></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" @click="logOut()" href="#">Çıkış Yap</a></li>
+                            <li><a class="dropdown-item" @click="logOut()">Çıkış Yap</a></li>
                         </ul>
                     </div>
                     <form class="d-flex" role="search">
@@ -87,3 +87,9 @@
         navigateTo('/book-search');
     }
 </script>
+
+<style scoped>
+    .dropdown-item:hover {
+        cursor: pointer;
+    }
+</style>
