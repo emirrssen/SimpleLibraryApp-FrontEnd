@@ -1,22 +1,24 @@
 <template>
     <div class="mb-3 d-flex" style="gap: 15px;">
-        <input type="text" class="form-control" placeholder="Giriniz...">
-        <div class="btn btn-success d-flex" style="gap: 10px;">Ara <i class="bi bi-search"></i></div>
+        <input type="text" class="form-control" placeholder="Giriniz..." v-model="searchText">
+        <div class="btn btn-success d-flex" style="gap: 10px;" @click="searchOnClick()">Ara <i class="bi bi-search"></i></div>
     </div>
     <div class="d-flex flex-column justify-content-center align-items-center" style="gap: 15px;">
-        <div class="card w-75 person-preview" @click="selectUserOnClick()">
+        <div v-for="item in searchResult" class="card w-75 person-preview" @click="selectUserOnClick()">
             <div class="card-body">
                 <div class="row">
                     <div class="col-4 d-flex align-items-center justify-content-center">
-                        <img src="../../../assets/default-profile.png" class="img-fluid w-75">
+                        <img v-if="item.id === 1" :src="item.userImage" class="img-fluid w-75 h-100" style="object-fit: cover; border-radius: 50%;">
+                        <img v-else src="https://img.internethaber.com/rcman/Cw480h270q95gc/files/2018/2/20/1848758/1848758-MXaSWw.jpg" class="img-fluid w-75 h-100" style="object-fit: cover; border-radius: 50%;">
                     </div>
                     <div class="col-8 d-flex flex-column justify-content-center">
-                        <strong class="pb-2">Emirhan ŞEN</strong>
-                        <span><strong>20</strong> yaşında (08.04.2003)</span>
-                        <span>Toplamda <strong>4</strong> kitap okudu</span>
-                        <span>Şu anda <strong>Beyaz Zambaklar Ülkesinde</strong> kitabını okuyor</span>
-                        <span><strong>12.05.2022</strong> tarihinden beridir üye</span>
-                        <span><strong>emirrssen@gmail.com</strong> mail adresine sahip</span>
+                        <strong class="pb-2">{{ item.name }}</strong>
+                        <span><strong>{{ item.age }}</strong> yaşında ({{ item.dateOfBirth }})</span>
+                        <span>Toplamda <strong>{{ item.totalReadedBooks }}</strong> kitap okudu</span>
+                        <span v-if="item.currentReadedBookName">Şu anda <strong>{{ item.currentReadedBookName }}</strong> kitabını okuyor</span>
+                        <span v-else>Şu anda herhangi bir kitap okumuyor</span>
+                        <span><strong>{{ item.accountStartDate }}</strong> tarihinden beridir üye</span>
+                        <span><strong>{{ item.email }}</strong> mail adresine sahip</span>
                     </div>
                 </div>
             </div>
@@ -28,9 +30,16 @@
     import { useUserManagementStore } from "~/stores/admin/userManagementStore";
 
     const userManagementStore = useUserManagementStore();
+    
+    let searchText = "";
+    const searchResult = computed(() => userManagementStore.searchResult);
 
     function selectUserOnClick() {
         userManagementStore.selectUser();
+    }
+
+    function searchOnClick() {
+        userManagementStore.searchUsers(searchText);
     }
     
 </script>

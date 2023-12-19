@@ -1,5 +1,5 @@
 import { BaseResponse, GenericDataResponse } from "../common/responses";
-import { PasswordToChange, PersonelInfo, PersonelInfoDetails, UserForLogin, UserForRegister } from "./userTypes";
+import { PasswordToChange, PersonelInfo, PersonelInfoDetails, UserDetailsForAdminSearch, UserForLogin, UserForRegister } from "./userTypes";
 import { Get, Post, Put } from "../common/baseService";
 
 export function RegisterAsync(userForRegister: UserForRegister): Promise<GenericDataResponse<number>> {
@@ -20,4 +20,8 @@ export function GetDetailsForProfileAsync(userId: number): Promise<GenericDataRe
 
 export function ChangePasswordByUserIdAsync(passwordToChange: PasswordToChange): Promise<BaseResponse> {
     return Put<BaseResponse>('personelinfo/change-password', {}, passwordToChange);
+}
+
+export function GetUserDetailsByNameOrEmailAsync(searchText: string): Promise<GenericDataResponse<UserDetailsForAdminSearch[]>> {
+    return Get<GenericDataResponse<UserDetailsForAdminSearch[]>>("personelinfo/admin-user-search", { SearchText: searchText })
 }
