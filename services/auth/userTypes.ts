@@ -96,3 +96,9 @@ export class UserDetailsForAdminSearch {
         Object.assign(this, fields);
     }
 }
+
+export class SelectedUserDetailsForAdmin {
+    id: number = 0;
+    userImage: string = "";
+    
+}

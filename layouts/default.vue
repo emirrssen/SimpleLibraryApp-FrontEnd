@@ -9,7 +9,7 @@
                     <NuxtLink class="navbar-brand" to="/home">
                         <span>
                             <i class="bi bi-book" />
-                            Simple Library App
+                            Simple Library App Beta
                         </span>
                     </NuxtLink>
                 </div>

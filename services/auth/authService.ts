@@ -25,3 +25,11 @@ export function ChangePasswordByUserIdAsync(passwordToChange: PasswordToChange):
 export function GetUserDetailsByNameOrEmailAsync(searchText: string): Promise<GenericDataResponse<UserDetailsForAdminSearch[]>> {
     return Get<GenericDataResponse<UserDetailsForAdminSearch[]>>("personelinfo/admin-user-search", { SearchText: searchText })
 }
+
+export function DeleteAccountByUserIdAsync(userId: number): Promise<BaseResponse> {
+    return Put<BaseResponse>('personelinfo/delete-account', { UserId: userId });
+}
+
+export function UpdateEmailByUserIdAsync(userId: number, newEmail: string): Promise<BaseResponse> {
+    return Put<BaseResponse>('personelinfo/update-email', { UserId: userId, NewEmail: newEmail });
+}

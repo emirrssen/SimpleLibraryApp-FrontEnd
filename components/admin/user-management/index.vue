@@ -1,6 +1,6 @@
 <template>
     <ProfileSearch v-if="!isSelected"></ProfileSearch>
-    <ProfileEdit :user-id="1" v-if="isSelected"></ProfileEdit>
+    <ProfileEdit v-if="isSelected"></ProfileEdit>
 </template>
 
 <script setup lang="ts">

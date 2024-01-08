@@ -4,7 +4,7 @@
         <div class="btn btn-success d-flex" style="gap: 10px;" @click="searchOnClick()">Ara <i class="bi bi-search"></i></div>
     </div>
     <div class="d-flex flex-column justify-content-center align-items-center" style="gap: 15px;">
-        <div v-for="item in searchResult" class="card w-75 person-preview" @click="selectUserOnClick()">
+        <div v-for="item in searchResult" class="card w-75 person-preview" @click="selectUserOnClick(item)">
             <div class="card-body">
                 <div class="row">
                     <div class="col-4 d-flex align-items-center justify-content-center">
@@ -28,14 +28,16 @@
 
 <script setup lang="ts">
     import { useUserManagementStore } from "~/stores/admin/userManagementStore";
+    import { UserDetailsForAdminSearch } from "~/services/auth/userTypes";
 
     const userManagementStore = useUserManagementStore();
     
     let searchText = "";
     const searchResult = computed(() => userManagementStore.searchResult);
 
-    function selectUserOnClick() {
+    function selectUserOnClick(user: UserDetailsForAdminSearch) {
         userManagementStore.selectUser();
+        userManagementStore.selectedSearchResult = user;
     }
 
     function searchOnClick() {

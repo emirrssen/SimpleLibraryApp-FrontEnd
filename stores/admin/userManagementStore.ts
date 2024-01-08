@@ -1,10 +1,11 @@
 import { useToast } from "vue-toastification"
-import { GetUserDetailsByNameOrEmailAsync } from "~/services/auth/authService";
+import { GetUserDetailsByNameOrEmailAsync, UpdateEmailByUserIdAsync, DeleteAccountByUserIdAsync } from "~/services/auth/authService";
 import { UserDetailsForAdminSearch } from "~/services/auth/userTypes";
 
 export const useUserManagementStore = defineStore('user-management-store', () => {
     const toast = useToast();
     const isSelected = ref(false);
+    const selectedSearchResult = ref({...new UserDetailsForAdminSearch()})
     const searchResult = ref([] as UserDetailsForAdminSearch[]);
 
     function selectUser() {
@@ -39,8 +40,30 @@ export const useUserManagementStore = defineStore('user-management-store', () =>
         })
     }
 
+    function updateEmail(userId: number, newEmail: string) {
+        UpdateEmailByUserIdAsync(userId, newEmail).then((response) => {
+            if (response.isSuccess) {
+                toast.success(response.message)
+            } else {
+                toast.error(response.message)
+            }
+        })
+    }
+
+    function closeAccount(userId: number) {
+        DeleteAccountByUserIdAsync(userId).then((response) => {
+            if (response.isSuccess) {
+                toast.success(response.message)
+            } else {
+                toast.error(response.message)
+            }
+        })
+    }
+
     return {
-        isSelected, searchResult,
-        selectUser, returnToUserSearch, searchUsers
+        isSelected, searchResult, selectedSearchResult,
+        selectUser, returnToUserSearch, searchUsers, updateEmail, closeAccount
     }
 })
+
+// Sayfalara implemente edilecek bu fonksiyonlar
