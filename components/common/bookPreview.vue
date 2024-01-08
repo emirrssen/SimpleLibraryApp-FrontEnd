@@ -3,7 +3,7 @@
         <div class="card-body">
             <img :src="bookImage" class="card-img-top" style="width: 145px;">
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex align-items-center flex-column" style="text-align: center;">
             <strong>{{ bookName }}</strong>
         </div>
     </div>

@@ -70,3 +70,35 @@ export class PasswordToChange {
         Object.assign(this, fields);
     }
 }
+
+export class UserDetailsForAdminSearch {
+    id: number = 0;
+    name: string = "";
+    age: number = 0;
+    dateOfBirth: string = "";
+    userImage: string = "";
+    totalReadedBooks: number = 0;
+    currentReadedBookName: string = "";
+    accountStartDate: string = "";
+    email: string = "";
+
+    constructor(fields?: {
+        id: number,
+        name: string,
+        age: number,
+        dateOfBirth: string,
+        userImage: string,
+        totalReadedBooks: number,
+        currentReadedBookName: string,
+        accountStartDate: string,
+        email: string
+    }) {
+        Object.assign(this, fields);
+    }
+}
+
+export class SelectedUserDetailsForAdmin {
+    id: number = 0;
+    userImage: string = "";
+    
+}
